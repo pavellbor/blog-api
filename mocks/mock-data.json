@@ -4,160 +4,112 @@
       "title": "10 Tips for Healthy Eating",
       "description": "Easy ways to improve your diet",
       "body": "Eating a balanced diet is important for overall health. Here are 10 tips to help you eat healthier.",
-      "tagList": [
-        "health",
-        "nutrition"
-      ],
+      "tagList": ["health", "nutrition"],
       "user": "user3"
     },
     {
       "title": "The Benefits of Exercise",
       "description": "Why physical activity is crucial",
       "body": "Exercise has countless benefits, from improving mood to reducing the risk of chronic diseases.",
-      "tagList": [
-        "fitness",
-        "health"
-      ],
+      "tagList": ["fitness", "health"],
       "user": "user1"
     },
     {
       "title": "How to Manage Stress",
       "description": "Tips for reducing stress levels",
       "body": "Learn how to relax and cope with stress more effectively with these helpful strategies.",
-      "tagList": [
-        "stress",
-        "mental health"
-      ],
+      "tagList": ["stress", "mental health"],
       "user": "user5"
     },
     {
       "title": "10 Ways to Boost Your Immune System",
       "description": "Protect yourself from illness",
       "body": "Strengthen your immune system naturally with these simple lifestyle changes.",
-      "tagList": [
-        "immunity",
-        "health"
-      ],
+      "tagList": ["immunity", "health"],
       "user": "user2"
     },
     {
       "title": "The Importance of Sleep",
       "description": "Why getting enough rest is crucial",
       "body": "Discover the many benefits of a good night's sleep and how it impacts your overall health.",
-      "tagList": [
-        "sleep",
-        "wellness"
-      ],
+      "tagList": ["sleep", "wellness"],
       "user": "user4"
     },
     {
       "title": "Healthy Habits for a Happy Life",
       "description": "Simple ways to improve your wellbeing",
       "body": "Incorporate these healthy habits into your daily routine to boost your mood and overall happiness.",
-      "tagList": [
-        "wellness",
-        "mental health"
-      ],
+      "tagList": ["wellness", "mental health"],
       "user": "user3"
     },
     {
       "title": "The Power of Positive Thinking",
       "description": "How optimism can improve your life",
       "body": "Positive thinking can have a profound impact on your mental and physical health. Learn how to cultivate a positive mindset.",
-      "tagList": [
-        "positivity",
-        "mindfulness"
-      ],
+      "tagList": ["positivity", "mindfulness"],
       "user": "user1"
     },
     {
       "title": "Healthy Snack Ideas",
       "description": "Quick and easy snacks to keep you energized",
       "body": "Fuel your body with nutritious snacks that are tasty and satisfying. Here are some ideas to get you started.",
-      "tagList": [
-        "nutrition",
-        "healthy eating"
-      ],
+      "tagList": ["nutrition", "healthy eating"],
       "user": "user5"
     },
     {
       "title": "Tips for a Better Work-Life Balance",
       "description": "How to juggle work and personal life",
       "body": "Maintain a healthy balance between work and leisure with these practical tips and strategies.",
-      "tagList": [
-        "work-life balance",
-        "wellness"
-      ],
+      "tagList": ["work-life balance", "wellness"],
       "user": "user2"
     },
     {
       "title": "The Benefits of Mindful Eating",
       "description": "Eating with awareness for better health",
       "body": "Practicing mindful eating can help you enjoy your meals more and improve your relationship with food.",
-      "tagList": [
-        "mindfulness",
-        "nutrition"
-      ],
+      "tagList": ["mindfulness", "nutrition"],
       "user": "user4"
     },
     {
       "title": "Staying Active While Working From Home",
       "description": "Simple exercises to stay active",
       "body": "Working from home can make it easy to become sedentary. Stay active with these quick and easy exercises you can do at home.",
-      "tagList": [
-        "fitness",
-        "exercise"
-      ],
+      "tagList": ["fitness", "exercise"],
       "user": "user3"
     },
     {
       "title": "Healthy Breakfast Ideas",
       "description": "Start your day right with a nutritious meal",
       "body": "A healthy breakfast is key to starting your day off on the right foot. Try these delicious and nutritious breakfast ideas.",
-      "tagList": [
-        "nutrition",
-        "healthy eating"
-      ],
+      "tagList": ["nutrition", "healthy eating"],
       "user": "user1"
     },
     {
       "title": "The Benefits of Meditation",
       "description": "How meditation can improve your wellbeing",
       "body": "Meditation has numerous benefits for the mind and body. Learn how to incorporate this practice into your daily routine.",
-      "tagList": [
-        "meditation",
-        "mindfulness"
-      ],
+      "tagList": ["meditation", "mindfulness"],
       "user": "user5"
     },
     {
       "title": "Tips for Improving Posture",
       "description": "How to stand and sit correctly",
       "body": "Good posture is essential for overall health and wellbeing. Follow these tips to improve your posture and reduce pain.",
-      "tagList": [
-        "posture",
-        "wellness"
-      ],
+      "tagList": ["posture", "wellness"],
       "user": "user2"
     },
     {
       "title": "The Importance of Hydration",
       "description": "Stay hydrated for better health",
       "body": "Drinking enough water is crucial for staying healthy and functioning properly. Learn why hydration is so important.",
-      "tagList": [
-        "hydration",
-        "wellness"
-      ],
+      "tagList": ["hydration", "wellness"],
       "user": "user4"
     },
     {
       "title": "Healthy Dinner Ideas",
       "description": "Nutritious and delicious meals for dinner",
       "body": "Eating a healthy dinner is important for fueling your body and providing essential nutrients. Try these tasty dinner ideas.",
-      "tagList": [
-        "nutrition",
-        "healthy eating"
-      ],
+      "tagList": ["nutrition", "healthy eating"],
       "user": "user3"
     }
   ],

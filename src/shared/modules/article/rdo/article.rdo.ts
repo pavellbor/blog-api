@@ -3,7 +3,7 @@ import { UserRdo } from '../../user/rdo/user.rdo.js';
 
 export class ArticleRdo {
   @Expose({
-    name: '_id'
+    name: '_id',
   })
   id: string;
 

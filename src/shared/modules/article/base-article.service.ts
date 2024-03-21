@@ -85,7 +85,7 @@ export class BaseArticleService implements ArticleService {
 
   public async exists(documentId: string): Promise<Boolean> {
     const result = await this.articleModel.findById(documentId);
-    
+
     return Boolean(result);
   }
 }

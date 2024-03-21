@@ -16,7 +16,7 @@ export class UploadFileMiddleware implements Middleware {
       },
       filename: (req, file, callback) => {
         file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
-        
+
         const originalFileName = file.originalname.split('.')[0];
         const fileName = `${originalFileName}-${Date.now()}${path.extname(file.originalname)}`;
 

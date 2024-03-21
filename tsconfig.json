@@ -10,13 +10,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "ts-node": {
     "esm": true
   },
-  "files": [
-    "./custom.d.ts",
-  ]
+  "files": ["./custom.d.ts"]
 }
