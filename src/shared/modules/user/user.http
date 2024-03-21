@@ -1,0 +1,50 @@
+# Пользователи
+## Получить список пользователей
+
+GET  http://localhost:3000/users HTTP/1.1
+
+###
+
+## Создать нового пользователя
+
+POST http://localhost:3000/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "pavel19",
+  "email": "pavellbor19@gmail.com",
+  "password": "qwerty123"
+}
+
+###
+
+## Авторизовать пользователя
+
+POST http://localhost:3000/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "pavellbor19@gmail.com",
+  "password": "qwerty123"
+}
+
+###
+
+## Обновить пользователя
+
+PATCH  http://localhost:3000/users/65eef35a9aa4be8b2d4ee5ae HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmMwY2EwNzgxNzE2NjcxODBlMTUxYiIsImVtYWlsIjoicGF2ZWxsYm9yMTlAZ21haWwuY29tIiwidXNlcm5hbWUiOiJwYXZlbDE5IiwiaWF0IjoxNzExMDE3MTY2LCJleHAiOjE3MTExODk5NjZ9.Ytp4JYSS5hN3Qwv4Wl17CXfj0GNqj-0JDF09Tv3U3HE
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="bio"
+
+text
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="Подпись Павел.png"
+Content-Type: image/png
+
+< C:\Users\Mgfck\Pictures\Подпись Павел.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###

@@ -1,0 +1,55 @@
+# Статья
+## Получить список статей
+
+GET  http://localhost:3000/articles HTTP/1.1
+
+###
+
+## Получить статью по идентификатору
+
+GET  http://localhost:3000/articles/65de3eb5ab13dc826bd81855 HTTP/1.1
+
+###
+
+## Создать новую статью
+
+POST http://localhost:3000/articles HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "e",
+  "description": "Советы и рекомендации по выбору профессии, которая будет приносить удовольствие и успех",
+  "body": "Выбор профессии – один из самых важных решений, которые мы принимаем в жизни. От этого зависит наше будущее, наше благополучие и счастье. В этой статье мы расскажем о том, как выбрать профессию, которая будет по душе и приведет к успеху.",
+  "tagList": 3,
+  "userId": "65ee35a9aa4be8b2d4ee5b6"
+}
+
+###
+
+## Обновить статью
+
+PATCH http://localhost:3000/articles/65dda4e15b8138e6281bb350 HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Как выбрать лучшую профессию по душе"
+}
+
+###
+
+## Удалить статью по идентификатору
+
+DELETE  http://localhost:3000/articles/65df51ed29fd8beaabeba8a4 HTTP/1.1
+
+###
+
+## Обновить статью по идентификатору
+
+PATCH  http://localhost:3000/articles/65de3eb5ab13dc826bd81855 HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Как выбрать комфортную работу"
+}
+  
+###
