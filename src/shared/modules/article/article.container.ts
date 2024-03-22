@@ -1,11 +1,12 @@
 import { ReturnModelType } from '@typegoose/typegoose';
 import { Container } from 'inversify';
-import { ArticleEntity, ArticleModel } from './article.entity.js';
+
+import { Controller } from '../../libs/rest/index.js';
 import { Component } from '../../types/component.enum.js';
+import { ArticleController } from './article.controller.js';
+import { ArticleEntity, ArticleModel } from './article.entity.js';
 import { ArticleService } from './article-service.interface.js';
 import { BaseArticleService } from './base-article.service.js';
-import { Controller } from '../../libs/rest/index.js';
-import { ArticleController } from './article.controller.js';
 
 export function createArticleContainer(): Container {
   const container = new Container();

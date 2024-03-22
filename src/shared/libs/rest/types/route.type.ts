@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { HttpMethod } from './http-method.enum.js';
+
 import { Middleware } from '../middleware/middleware.interface.js';
+import { HttpMethod } from './http-method.enum.js';
 
 export type Route = {
   method: HttpMethod;

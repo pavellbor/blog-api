@@ -1,11 +1,12 @@
-import { Request, Response, NextFunction } from 'express';
-import { ExceptionFilter } from './exception-filter.interface.js';
+import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
+
+import { createErrorObject } from '../../../helpers/common.js';
 import { Component } from '../../../types/component.enum.js';
 import { Logger } from '../../logger/logger.interface.js';
-import { createErrorObject } from '../../../helpers/common.js';
 import { HttpError } from '../index.js';
 import { ApplicationError } from '../types/application-error.enum.js';
+import { ExceptionFilter } from './exception-filter.interface.js';
 
 @injectable()
 export class HttpErrorExceptionFilter implements ExceptionFilter {

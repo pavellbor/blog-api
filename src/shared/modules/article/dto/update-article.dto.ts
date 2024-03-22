@@ -1,4 +1,5 @@
 import { IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+
 import { UpdateArticleValidationMessage } from './update-article.message.js';
 
 export class UpdateArticleDto {

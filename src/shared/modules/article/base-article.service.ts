@@ -1,13 +1,14 @@
 import { DocumentType, ReturnModelType } from '@typegoose/typegoose';
-import { ArticleService } from './article-service.interface.js';
-import { ArticleEntity } from './article.entity.js';
-import { CreateArticleDto } from './dto/create-article.dto.js';
 import { inject, injectable } from 'inversify';
-import { Component, SortType } from '../../types/index.js';
+
 import { Logger } from '../../libs/logger/logger.interface.js';
+import { Component, SortType } from '../../types/index.js';
+import { DEFAULT_ARTICLES_COUNT, DEFAULT_ARTICLES_OFFSET } from './article.constant.js';
+import { ArticleEntity } from './article.entity.js';
+import { ArticleService } from './article-service.interface.js';
+import { CreateArticleDto } from './dto/create-article.dto.js';
 import { UpdateArticleDto } from './dto/update-article.dto.js';
 import { FindRequestQuery } from './types/find-request-query.type.js';
-import { DEFAULT_ARTICLES_COUNT, DEFAULT_ARTICLES_OFFSET } from './article.constant.js';
 
 @injectable()
 export class BaseArticleService implements ArticleService {
@@ -34,7 +35,6 @@ export class BaseArticleService implements ArticleService {
 
   public async find({
     author,
-    favorited,
     limit = DEFAULT_ARTICLES_COUNT,
     offset = DEFAULT_ARTICLES_OFFSET,
     tag,
@@ -83,7 +83,7 @@ export class BaseArticleService implements ArticleService {
     return result;
   }
 
-  public async exists(documentId: string): Promise<Boolean> {
+  public async exists(documentId: string): Promise<boolean> {
     const result = await this.articleModel.findById(documentId);
 
     return Boolean(result);

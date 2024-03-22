@@ -1,4 +1,5 @@
 import { Response, Router } from 'express';
+
 import { Route } from '../types/route.type.js';
 
 export interface Controller {

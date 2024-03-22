@@ -1,10 +1,11 @@
-import { inject, injectable } from 'inversify';
-import { CommentService } from './comment-service.interface.js';
-import { Component } from '../../types/component.enum.js';
 import { DocumentType, ReturnModelType } from '@typegoose/typegoose';
-import { CommentEntity } from './comment.entity.js';
-import { CreateCommentDto } from './dto/create-comment.dto.js';
+import { inject, injectable } from 'inversify';
 import { Logger } from 'shared/libs/logger/logger.interface.js';
+
+import { Component } from '../../types/component.enum.js';
+import { CommentEntity } from './comment.entity.js';
+import { CommentService } from './comment-service.interface.js';
+import { CreateCommentDto } from './dto/create-comment.dto.js';
 
 @injectable()
 export class BaseCommentService implements CommentService {
@@ -41,7 +42,7 @@ export class BaseCommentService implements CommentService {
     return result;
   }
 
-  public async exists(documentId: string): Promise<Boolean> {
+  public async exists(documentId: string): Promise<boolean> {
     const result = await this.commentModel.findById(documentId);
 
     return Boolean(result);

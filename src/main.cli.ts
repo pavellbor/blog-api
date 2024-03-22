@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+
 import { CliApplication, ImportCommand } from './cli/index.js';
 
 function bootstrap() {

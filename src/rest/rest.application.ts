@@ -1,15 +1,16 @@
+import cors from 'cors';
 import express, { Express } from 'express';
 import { inject, injectable } from 'inversify';
+
+import { getFullServerPath } from '../shared/helpers/common.js';
 import { Config } from '../shared/libs/config/index.js';
+import { RestSchema } from '../shared/libs/config/rest.schema.js';
+import { DatabaseClient } from '../shared/libs/database-client/index.js';
 import { Logger } from '../shared/libs/logger/index.js';
 import { Controller, ExceptionFilter } from '../shared/libs/rest/index.js';
-import { Component } from '../shared/types/index.js';
-import { DatabaseClient } from '../shared/libs/database-client/index.js';
-import { RestSchema } from '../shared/libs/config/rest.schema.js';
 import { ParseTokenMiddleware } from '../shared/libs/rest/middleware/parse-token.middleware.js';
-import { getFullServerPath } from '../shared/helpers/common.js';
+import { Component } from '../shared/types/index.js';
 import { STATIC_FILES_ROUTE, STATIC_UPLOAD_ROUTE } from './rest.constant.js';
-import cors from 'cors';
 
 @injectable()
 export class RestApplication {

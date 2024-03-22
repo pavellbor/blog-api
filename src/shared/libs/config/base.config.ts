@@ -1,8 +1,9 @@
-import dotenv from 'dotenv';
-import { Config } from './config.interface.js';
+import * as dotenv from 'dotenv';
 import { inject, injectable } from 'inversify';
+
 import { Component } from '../../types/index.js';
 import { Logger } from '../logger/index.js';
+import { Config } from './config.interface.js';
 
 @injectable()
 export class BaseConfig<T> implements Config<T> {

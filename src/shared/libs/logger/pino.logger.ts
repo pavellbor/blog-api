@@ -1,10 +1,10 @@
-import { pino, Logger as PinoInstance } from 'pino';
-import { Logger } from './logger.interface.js';
 import { inject, injectable } from 'inversify';
+import { Logger as PinoInstance, pino } from 'pino';
+
 import { Component } from '../../types/component.enum.js';
 import { Config } from '../config/config.interface.js';
-import { RestConfig } from '../config/rest.config.js';
 import { RestSchema } from '../config/rest.schema.js';
+import { Logger } from './logger.interface.js';
 
 @injectable()
 export class PinoLogger implements Logger {

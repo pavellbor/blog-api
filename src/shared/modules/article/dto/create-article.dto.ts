@@ -1,4 +1,5 @@
-import { IsArray, IsMongoId, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsArray, IsString, MaxLength, MinLength } from 'class-validator';
+
 import { CreateArticleValidationMessage } from './create-article.messages.js';
 
 export class CreateArticleDto {

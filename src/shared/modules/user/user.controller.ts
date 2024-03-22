@@ -1,4 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
+import { inject, injectable } from 'inversify';
+import { Config } from 'shared/libs/config/config.interface.js';
+import { RestSchema } from 'shared/libs/config/rest.schema.js';
+
+import { fillDTO } from '../../helpers/index.js';
 import { Logger } from '../../libs/logger/index.js';
 import {
   BaseController,
@@ -10,22 +16,17 @@ import {
   ValidateDtoMiddleware,
   ValidateObjectIdMiddleware,
 } from '../../libs/rest/index.js';
-import { inject, injectable } from 'inversify';
 import { Component } from '../../types/index.js';
-import { UserService } from './user-service.interface.js';
-import { UserRdo } from './rdo/user.rdo.js';
-import { fillDTO } from '../../helpers/index.js';
-import { StatusCodes } from 'http-status-codes';
-import { RegisterUserRequest } from './types/register-user-request.type.js';
-import { CreateUserDto } from './dto/create-user.dto.js';
-import { UpdateUserRequest } from './types/update-user-request.type.js';
-import { UpdateUserDto } from './dto/update-user.dto.js';
-import { Config } from 'shared/libs/config/config.interface.js';
-import { RestSchema } from 'shared/libs/config/rest.schema.js';
-import { LoginUserRequest } from './types/login-user-request.type.js';
 import { AuthService } from '../auth/index.js';
+import { CreateUserDto } from './dto/create-user.dto.js';
 import { LoginUserDto } from './dto/login-user.dto.js';
+import { UpdateUserDto } from './dto/update-user.dto.js';
 import { LoggedUserRdo } from './rdo/logged-user.rdo.js';
+import { UserRdo } from './rdo/user.rdo.js';
+import { LoginUserRequest } from './types/login-user-request.type.js';
+import { RegisterUserRequest } from './types/register-user-request.type.js';
+import { UpdateUserRequest } from './types/update-user-request.type.js';
+import { UserService } from './user-service.interface.js';
 
 @injectable()
 export class UserController extends BaseController {
@@ -94,7 +95,7 @@ export class UserController extends BaseController {
     this.created(res, fillDTO(UserRdo, user));
   }
 
-  public async login({ body }: LoginUserRequest, res: Response, next: NextFunction): Promise<void> {
+  public async login({ body }: LoginUserRequest, res: Response, _next: NextFunction): Promise<void> {
     const user = await this.authService.verify(body);
     const token = this.authService.authenticate(user);
 
@@ -103,7 +104,7 @@ export class UserController extends BaseController {
     this.ok(res, responseData);
   }
 
-  public async update(req: UpdateUserRequest, res: Response, next: NextFunction): Promise<void> {
+  public async update(req: UpdateUserRequest, res: Response, _next: NextFunction): Promise<void> {
     const updatedUser = await this.userService.updateById(req.params.userId, { ...req.body, image: req.file.filename });
 
     this.ok(res, fillDTO(UserRdo, updatedUser));

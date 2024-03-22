@@ -1,9 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
-import { ExceptionFilter } from './exception-filter.interface.js';
-import { ValidationError } from '../index.js';
+import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
-import { Component } from '../../../types/component.enum.js';
+
 import { Logger } from '../../../libs/logger/logger.interface.js';
+import { Component } from '../../../types/component.enum.js';
+import { ValidationError } from '../index.js';
+import { ExceptionFilter } from './exception-filter.interface.js';
 
 @injectable()
 export class ValidationExceptionFilter implements ExceptionFilter {

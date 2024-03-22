@@ -1,9 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
-import { Middleware } from './middleware.interface.js';
-import jwt from 'jsonwebtoken';
-import { HttpError } from '../index.js';
+import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import * as jwt from 'jsonwebtoken';
 import { TokenPayload } from 'shared/modules/auth/index.js';
+
+import { HttpError } from '../index.js';
+import { Middleware } from './middleware.interface.js';
 
 function isTokenPayload(payload: unknown): payload is TokenPayload {
   return (

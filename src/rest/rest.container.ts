@@ -1,20 +1,21 @@
 import { Container } from 'inversify';
-import { RestApplication } from './rest.application.js';
-import { Component } from '../shared/types/component.enum.js';
-import { Logger } from '../shared/libs/logger/logger.interface.js';
+
 import { Config } from '../shared/libs/config/config.interface.js';
-import { DatabaseClient } from '../shared/libs/database-client/database-client.interface.js';
-import { MongoDatabaseClient } from '../shared/libs/database-client/mongo.database-client.js';
-import {
-  ExceptionFilter,
-  AppExceptionFilter,
-  ValidationExceptionFilter,
-  HttpErrorExceptionFilter,
-} from '../shared/libs/rest/index.js';
-import { PinoLogger } from '../shared/libs/logger/pino.logger.js';
 import { RestConfig } from '../shared/libs/config/rest.config.js';
 import { RestSchema } from '../shared/libs/config/rest.schema.js';
+import { DatabaseClient } from '../shared/libs/database-client/database-client.interface.js';
+import { MongoDatabaseClient } from '../shared/libs/database-client/mongo.database-client.js';
+import { Logger } from '../shared/libs/logger/logger.interface.js';
+import { PinoLogger } from '../shared/libs/logger/pino.logger.js';
+import {
+  AppExceptionFilter,
+  ExceptionFilter,
+  HttpErrorExceptionFilter,
+  ValidationExceptionFilter,
+} from '../shared/libs/rest/index.js';
 import { PathTransformer } from '../shared/libs/rest/transformer/path-transformer.js';
+import { Component } from '../shared/types/component.enum.js';
+import { RestApplication } from './rest.application.js';
 
 export function createRestContainer(): Container {
   const container = new Container();

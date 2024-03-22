@@ -1,25 +1,30 @@
-import { Logger } from '../../shared/libs/logger/logger.interface.js';
-import { CliCommand } from './cli-command.interface.js';
-import { ArticleService } from '../../shared/modules/article/article-service.interface.js';
-import { UserService } from '../../shared/modules/user/user-service.interface.js';
-import { DatabaseClient } from '../../shared/libs/database-client/database-client.interface.js';
-import { ConsoleLogger } from '../../shared/libs/logger/console.logger.js';
-import { MongoDatabaseClient } from '../../shared/libs/database-client/mongo.database-client.js';
-import { BaseArticleService } from '../../shared/modules/article/base-article.service.js';
-import { ArticleModel } from '../../shared/modules/article/article.entity.js';
-import { UserModel } from '../../shared/modules/user/user.entity.js';
-import { BaseUserService } from '../../shared/modules/user/base-user.service.js';
 import { readFile } from 'fs/promises';
-import { MockData } from '../../shared/types/index.js';
-import { CommentService } from '../../shared/modules/comment/comment-service.interface.js';
+
+import { DatabaseClient } from '../../shared/libs/database-client/database-client.interface.js';
+import { MongoDatabaseClient } from '../../shared/libs/database-client/mongo.database-client.js';
+import { ConsoleLogger } from '../../shared/libs/logger/console.logger.js';
+import { Logger } from '../../shared/libs/logger/logger.interface.js';
+import { ArticleModel } from '../../shared/modules/article/article.entity.js';
+import { ArticleService } from '../../shared/modules/article/article-service.interface.js';
+import { BaseArticleService } from '../../shared/modules/article/base-article.service.js';
 import { BaseCommentService } from '../../shared/modules/comment/base-comment.service.js';
 import { CommentModel } from '../../shared/modules/comment/comment.entity.js';
+import { CommentService } from '../../shared/modules/comment/comment-service.interface.js';
+import { BaseUserService } from '../../shared/modules/user/base-user.service.js';
+import { UserModel } from '../../shared/modules/user/user.entity.js';
+import { UserService } from '../../shared/modules/user/user-service.interface.js';
+import { MockData } from '../../shared/types/index.js';
+import { CliCommand } from './cli-command.interface.js';
 
 export class ImportCommand implements CliCommand {
   private logger: Logger;
+
   private databaseClient: DatabaseClient;
+
   private articleService: ArticleService;
+
   private userService: UserService;
+
   private commentService: CommentService;
 
   get name() {

@@ -1,16 +1,17 @@
 import { inject, injectable } from 'inversify';
-import { AuthService } from './auth-service.interface.js';
-import { Component } from '../../types/component.enum.js';
-import { UserService } from '../user/user-service.interface.js';
-import { UserEntity } from '../user/user.entity.js';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { Config } from 'shared/libs/config/config.interface.js';
 import { RestSchema } from 'shared/libs/config/rest.schema.js';
-import { JWT_ALGORITHM, JWT_EXPIRED } from './auth.constant.js';
-import { TokenPayload } from './types/token-payload.type.js';
-import { LoginUserDto } from '../user/dto/login-user.dto.js';
+
 import { Logger } from '../../libs/logger/logger.interface.js';
+import { Component } from '../../types/component.enum.js';
+import { LoginUserDto } from '../user/dto/login-user.dto.js';
+import { UserEntity } from '../user/user.entity.js';
+import { UserService } from '../user/user-service.interface.js';
+import { JWT_ALGORITHM, JWT_EXPIRED } from './auth.constant.js';
+import { AuthService } from './auth-service.interface.js';
 import { UserNotFoundException, UserPasswordIncorrectException } from './errors/index.js';
+import { TokenPayload } from './types/token-payload.type.js';
 
 @injectable()
 export class DefaultAuthService implements AuthService {

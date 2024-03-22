@@ -1,7 +1,8 @@
+import * as dotenv from 'dotenv';
 import { injectable } from 'inversify';
+
 import { Config } from './config.interface.js';
-import { RestSchema, restConfigSchema } from './rest.schema.js';
-import dotenv from 'dotenv';
+import { restConfigSchema, RestSchema } from './rest.schema.js';
 
 @injectable()
 export class RestConfig implements Config<RestSchema> {

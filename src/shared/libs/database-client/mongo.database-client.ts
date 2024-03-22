@@ -1,8 +1,9 @@
-import mongoose from 'mongoose';
-import { DatabaseClient } from './database-client.interface.js';
 import { inject, injectable } from 'inversify';
+import mongoose from 'mongoose';
+
 import { Component } from '../../types/component.enum.js';
 import { Logger } from '../logger/index.js';
+import { DatabaseClient } from './database-client.interface.js';
 
 @injectable()
 export class MongoDatabaseClient implements DatabaseClient {

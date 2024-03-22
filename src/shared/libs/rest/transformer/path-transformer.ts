@@ -1,12 +1,13 @@
+import { readdir } from 'fs/promises';
 import { inject, injectable } from 'inversify';
+
+import { STATIC_FILES_ROUTE, STATIC_UPLOAD_ROUTE } from '../../../../rest/rest.constant.js';
 import { getFullServerPath, isObject } from '../../../../shared/helpers/common.js';
 import { Config } from '../../../../shared/libs/config/config.interface.js';
 import { RestSchema } from '../../../../shared/libs/config/rest.schema.js';
 import { Logger } from '../../../../shared/libs/logger/logger.interface.js';
 import { Component } from '../../../../shared/types/component.enum.js';
 import { STATIC_RESOURCE_FIELDS } from './path-transformer.constant.js';
-import { STATIC_FILES_ROUTE, STATIC_UPLOAD_ROUTE } from '../../../../rest/rest.constant.js';
-import { readdir } from 'fs/promises';
 
 @injectable()
 export class PathTransformer {

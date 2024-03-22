@@ -1,9 +1,10 @@
 import { DocumentType } from '@typegoose/typegoose';
+
+import { DocumentExistsService } from '../../types/document-exists-service.interface.js';
 import { ArticleEntity } from './article.entity.js';
 import { CreateArticleDto } from './dto/create-article.dto.js';
 import { UpdateArticleDto } from './dto/update-article.dto.js';
 import { FindRequestQuery } from './types/find-request-query.type.js';
-import { DocumentExistsService } from '../../types/document-exists-service.interface.js';
 
 export interface ArticleService extends DocumentExistsService {
   find(params: FindRequestQuery): Promise<DocumentType<ArticleEntity>[]>;

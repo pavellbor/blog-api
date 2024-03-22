@@ -1,10 +1,11 @@
+import { ReturnModelType } from '@typegoose/typegoose';
 import { Container } from 'inversify';
+
+import { Controller } from '../../libs/rest/index.js';
 import { Component } from '../../types/component.enum.js';
-import { CommentEntity, CommentModel } from './comment.entity.js';
 import { BaseCommentService } from './base-comment.service.js';
 import { CommentController } from './comment.controller.js';
-import { ReturnModelType } from '@typegoose/typegoose';
-import { Controller } from '../../libs/rest/index.js';
+import { CommentEntity, CommentModel } from './comment.entity.js';
 import { CommentService } from './comment-service.interface.js';
 
 export function createCommentContainer() {

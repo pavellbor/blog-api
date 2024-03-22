@@ -1,6 +1,7 @@
-import { prop, getModelForClass, modelOptions, defaultClasses } from '@typegoose/typegoose';
+import { defaultClasses, getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
+import * as bcrypt from 'bcrypt';
+
 import { User } from '../../types/index.js';
-import bcrypt from 'bcrypt';
 import { SALT_ROUNDS } from './user.constant.js';
 
 export interface UserEntity extends defaultClasses.Base {}

@@ -1,5 +1,7 @@
-import { Response, NextFunction } from 'express';
+import { NextFunction, Response } from 'express';
 import { inject, injectable } from 'inversify';
+
+import { fillDTO } from '../../helpers/common.js';
 import { Logger } from '../../libs/logger/index.js';
 import {
   BaseController,
@@ -8,20 +10,19 @@ import {
   PrivateRouteMiddleware,
   ValidateObjectIdMiddleware,
 } from '../../libs/rest/index.js';
+import { ValidateDtoMiddleware } from '../../libs/rest/middleware/validate-dto.middleware.js';
 import { Component } from '../../types/component.enum.js';
-import { ArticleService } from './article-service.interface.js';
-import { fillDTO } from '../../helpers/common.js';
-import { ArticleRdo } from './rdo/article.rdo.js';
+import { CommentController } from '../comment/comment.controller.js';
 import { CommentService } from '../comment/comment-service.interface.js';
+import { ArticleService } from './article-service.interface.js';
+import { CreateArticleDto } from './dto/create-article.dto.js';
+import { UpdateArticleDto } from './dto/update-article.dto.js';
+import { ArticleRdo } from './rdo/article.rdo.js';
 import { CreateArticleRequest } from './types/create-article-request.type.js';
+import { DeleteArticleRequest } from './types/delete-article-request.js';
 import { IndexArticlesRequest } from './types/index-articles-request.type.js';
 import { ShowArticleRequest } from './types/show-article-request.type.js';
 import { UpdateArticleRequest } from './types/update-article-request.type.js';
-import { DeleteArticleRequest } from './types/delete-article-request.js';
-import { ValidateDtoMiddleware } from '../../libs/rest/middleware/validate-dto.middleware.js';
-import { CreateArticleDto } from './dto/create-article.dto.js';
-import { UpdateArticleDto } from './dto/update-article.dto.js';
-import { CommentController } from '../comment/comment.controller.js';
 
 @injectable()
 export class ArticleController extends BaseController {

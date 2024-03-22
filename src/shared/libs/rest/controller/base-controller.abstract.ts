@@ -1,14 +1,14 @@
 import { Response, Router } from 'express';
-import { Controller } from './controller.interface.js';
-import { Route } from '../types/route.type.js';
-import { Logger } from '../../../../shared/libs/logger/index.js';
+import asyncHandler from 'express-async-handler';
 import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
-import asyncHandler from 'express-async-handler';
-import { Middleware } from '../index.js';
-import { InnerController } from '../types/inner-controller.type.js';
-import { PathTransformer } from '../transformer/path-transformer.js';
+
+import { Logger } from '../../../../shared/libs/logger/index.js';
 import { Component } from '../../../../shared/types/component.enum.js';
+import { PathTransformer } from '../transformer/path-transformer.js';
+import { InnerController } from '../types/inner-controller.type.js';
+import { Route } from '../types/route.type.js';
+import { Controller } from './controller.interface.js';
 
 @injectable()
 export class BaseController implements Controller {

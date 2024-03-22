@@ -1,7 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
-import { Middleware } from './middleware.interface.js';
+import { NextFunction, Request, Response } from 'express';
 import multer from 'multer';
 import path from 'path';
+
+import { Middleware } from './middleware.interface.js';
 
 export class UploadFileMiddleware implements Middleware {
   constructor(
@@ -11,10 +12,10 @@ export class UploadFileMiddleware implements Middleware {
 
   async execute(req: Request, res: Response, next: NextFunction): Promise<void> {
     const storage = multer.diskStorage({
-      destination: (req, file, callback) => {
+      destination: (_req, _file, callback) => {
         return callback(null, this.uploadDirectory);
       },
-      filename: (req, file, callback) => {
+      filename: (_req, file, callback) => {
         file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
 
         const originalFileName = file.originalname.split('.')[0];

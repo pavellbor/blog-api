@@ -1,4 +1,5 @@
 import { IsEmail, IsOptional, IsString, Length } from 'class-validator';
+
 import { UpdateUserMessage } from './update-user.messages.js';
 
 export class UpdateUserDto {

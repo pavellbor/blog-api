@@ -1,12 +1,13 @@
 import { DocumentType, ReturnModelType } from '@typegoose/typegoose';
-import { UserService } from './user-service.interface.js';
-import { UserEntity } from './user.entity.js';
 import { inject, injectable } from 'inversify';
+import { Logger } from 'shared/libs/logger/logger.interface.js';
+
 import { Component } from '../../types/component.enum.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
-import { Logger } from 'shared/libs/logger/logger.interface.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
 import { DEFAULT_AVATAR_FILE_NAME } from './user.constant.js';
+import { UserEntity } from './user.entity.js';
+import { UserService } from './user-service.interface.js';
 
 @injectable()
 export class BaseUserService implements UserService {
@@ -49,7 +50,7 @@ export class BaseUserService implements UserService {
     return result;
   }
 
-  public async exists(userId: string): Promise<Boolean> {
+  public async exists(userId: string): Promise<boolean> {
     const result = await this.userModel.findById(userId);
 
     return !!result;

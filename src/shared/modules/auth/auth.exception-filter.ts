@@ -1,11 +1,12 @@
-import { Request, Response, NextFunction } from 'express';
-import { ExceptionFilter } from '../../libs/rest/index.js';
+import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
-import { Component } from '../../types/component.enum.js';
-import { Logger } from '../../libs/logger/logger.interface.js';
-import { BaseUserException } from './errors/base-user.exception.js';
+
 import { createErrorObject } from '../../helpers/common.js';
+import { Logger } from '../../libs/logger/logger.interface.js';
+import { ExceptionFilter } from '../../libs/rest/index.js';
 import { ApplicationError } from '../../libs/rest/types/application-error.enum.js';
+import { Component } from '../../types/component.enum.js';
+import { BaseUserException } from './errors/base-user.exception.js';
 
 @injectable()
 export class AuthExceptionFilter implements ExceptionFilter {

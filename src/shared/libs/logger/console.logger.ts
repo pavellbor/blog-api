@@ -1,4 +1,5 @@
 import { injectable } from 'inversify';
+
 import { getErrorMessage } from '../../helpers/index.js';
 import { Logger } from './logger.interface.js';
 
