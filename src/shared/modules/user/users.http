@@ -13,8 +13,8 @@ Content-Type: application/json
 
 {
   "user": {
-    "email": "user2@example.com",
-    "password": "password2"
+    "email": "sublezub@ya.ru",
+    "password": "qwerty123"
   }
 }
 
@@ -27,8 +27,8 @@ Content-Type: application/json
 
 {
   "user": {
-    "username": "pavel22",
-    "email": "pavellbor22@gmail.com",
+    "username": "sublezub",
+    "email": "sublezub@ya.ru",
     "password": "qwerty123"
   }
 }

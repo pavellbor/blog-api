@@ -5,7 +5,6 @@ import { Logger } from 'shared/libs/logger/logger.interface.js';
 import { Component } from '../../types/component.enum.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
-import { DEFAULT_AVATAR_FILE_NAME } from './user.constant.js';
 import { UserEntity } from './user.entity.js';
 import { UserService } from './user-service.interface.js';
 
@@ -23,7 +22,7 @@ export class DefaultUserService implements UserService {
   }
 
   public async create(dto: CreateUserDto['user']): Promise<DocumentType<UserEntity>> {
-    const user = new UserEntity({ ...dto, image: DEFAULT_AVATAR_FILE_NAME });
+    const user = new UserEntity(dto);
 
     await user.setPassword(dto.password);
 
@@ -60,29 +59,21 @@ export class DefaultUserService implements UserService {
     return !!result;
   }
 
-  public async followUser(followingByUserId: string, followUserId: string): Promise<void> {
-    const followingByUser = await this.userModel.findById(followingByUserId);
+  public async followUser(currentUserId: string, followingUserId: string): Promise<void> {
+    const currentUser = await this.userModel.findById(currentUserId);
 
-    await this.userModel.findByIdAndUpdate(followingByUser.id, {
-      $addToSet: {
-        followed: followUserId,
-      },
-    });
+    await currentUser.followUser(followingUserId);
   }
 
-  public async unfollowUser(followingByUserId: string, followUserId: string): Promise<void> {
-    const followingByUser = await this.userModel.findById(followingByUserId);
+  public async unfollowUser(currentUserId: string, unfollowingUserId: string): Promise<void> {
+    const currentUser = await this.userModel.findById(currentUserId);
 
-    await this.userModel.findByIdAndUpdate(followingByUser.id, {
-      $pull: {
-        followed: followUserId,
-      },
-    });
+    await currentUser.unfollowUser(unfollowingUserId);
   }
 
-  public async isFollowingBy(followingByUserId: string, followUserId: string): Promise<boolean> {
-    const followUser = await this.userModel.findOne({ _id: followingByUserId, followed: { $in: [followUserId] } });
+  public async isFollowing(currentUserId: string, checkingUserId: string): Promise<boolean> {
+    const currentUser = await this.userModel.findById(currentUserId);
 
-    return !!followUser;
+    return currentUser.isFollowing(checkingUserId);
   }
 }

@@ -2,21 +2,21 @@
 
 ## Получить профиль пользователя
 
-GET http://localhost:3000/profiles/user1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVmMzVhOWFhNGJlOGIyZDRlZTViMCIsImlhdCI6MTcxMTUyOTQ2NCwiZXhwIjoxNzExNzAyMjY0fQ.wJn15BCEmT7viGD9vqYaFoWdqCTquJDcWypIXQEcVi0
+GET http://localhost:3000/profiles/user3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDU2ZjBlMjYwNzczM2Y1Nzg5ZTEzZiIsImlhdCI6MTcxMTYzMjE5MCwiZXhwIjoxNzExODA0OTkwfQ.7W7x-wdmydDIZf2eKT3L2ISRQ5kLKAAW7XZ0FhOmL3I
 
 ###
 
 ## Подписаться на пользователя
 
-POST http://localhost:3000/profiles/user1/follow HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVmMzVhOWFhNGJlOGIyZDRlZTViMCIsImlhdCI6MTcxMTUyOTQ2NCwiZXhwIjoxNzExNzAyMjY0fQ.wJn15BCEmT7viGD9vqYaFoWdqCTquJDcWypIXQEcVi0
+POST http://localhost:3000/profiles/user3/follow HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDU2ZjBlMjYwNzczM2Y1Nzg5ZTEzZiIsImlhdCI6MTcxMTYzMjE5MCwiZXhwIjoxNzExODA0OTkwfQ.7W7x-wdmydDIZf2eKT3L2ISRQ5kLKAAW7XZ0FhOmL3I
 
 ###
 
 ## Отписаться от пользователя
 
-DELETE http://localhost:3000/profiles/user1/follow HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVmMzVhOWFhNGJlOGIyZDRlZTViMCIsImlhdCI6MTcxMTUyOTQ2NCwiZXhwIjoxNzExNzAyMjY0fQ.wJn15BCEmT7viGD9vqYaFoWdqCTquJDcWypIXQEcVi0
+DELETE http://localhost:3000/profiles/user3/follow HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDU2ZjBlMjYwNzczM2Y1Nzg5ZTEzZiIsImlhdCI6MTcxMTYzMjE5MCwiZXhwIjoxNzExODA0OTkwfQ.7W7x-wdmydDIZf2eKT3L2ISRQ5kLKAAW7XZ0FhOmL3I
 
 ###

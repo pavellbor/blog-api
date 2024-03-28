@@ -12,7 +12,7 @@ export interface UserService extends DocumentExistsService {
   findByEmail(email: string): Promise<DocumentType<UserEntity> | null>;
   findByUsername(username: string): Promise<DocumentType<UserEntity> | null>;
   updateById(userId: string, dto: UpdateUserDto['user']): Promise<DocumentType<UserEntity>>;
-  followUser(isFollowingByUserId: string, followUserId: string): Promise<void>;
-  unfollowUser(isFollowingByUserId: string, followUserId: string): Promise<void>;
-  isFollowingBy(isFollowingByUserId: string, followUserId: string): Promise<boolean>;
+  followUser(currentUserId: string, followUserId: string): Promise<void>;
+  unfollowUser(currentUserId: string, unfollowUserId: string): Promise<void>;
+  isFollowing(currentUserId: string, checkingUserId: string): Promise<boolean>;
 }

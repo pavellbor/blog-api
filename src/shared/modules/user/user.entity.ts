@@ -1,8 +1,8 @@
-import { defaultClasses, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose';
+import { defaultClasses, DocumentType, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose';
 import * as bcrypt from 'bcrypt';
 
 import { User } from '../../types/index.js';
-import { SALT_ROUNDS } from './user.constant.js';
+import { DEFAULT_AVATAR_FILE_NAME, SALT_ROUNDS } from './user.constant.js';
 
 export interface UserEntity extends defaultClasses.Base {}
 
@@ -14,30 +14,37 @@ export interface UserEntity extends defaultClasses.Base {}
 export class UserEntity extends defaultClasses.TimeStamps implements User {
   @prop({
     unique: true,
+    required: true,
+    lowercase: true,
+    trim: true,
   })
   public username: string;
 
   @prop({
     required: true,
     unique: true,
+    lowercase: true,
+    trim: true,
   })
   public email: string;
 
   @prop({
-    default: null,
+    default: DEFAULT_AVATAR_FILE_NAME,
   })
   public image: string;
 
   @prop({
     default: null,
+    trim: true,
   })
   public bio: string;
 
   @prop({
     ref: UserEntity,
+    type: String,
     default: [],
   })
-  public followed: Ref<UserEntity>[];
+  public followingUsers: Ref<UserEntity, string>[];
 
   @prop({
     required: true,
@@ -49,7 +56,6 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
 
     this.username = userData.username;
     this.email = userData.email;
-    this.image = userData.image;
   }
 
   public async setPassword(password: string) {
@@ -59,6 +65,20 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
 
   public async comparePassword(password: string) {
     return bcrypt.compare(password, this.password);
+  }
+
+  public async followUser(this: DocumentType<UserEntity>, userId: string): Promise<void> {
+    this.followingUsers.push(userId);
+    await this.save();
+  }
+
+  public async unfollowUser(this: DocumentType<UserEntity>, userId: string): Promise<void> {
+    this.followingUsers = this.followingUsers.filter((followingUserId) => followingUserId !== userId);
+    await this.save();
+  }
+
+  public async isFollowing(this: DocumentType<UserEntity>, userId: string): Promise<boolean> {
+    return this.followingUsers.includes(userId);
   }
 }
 
