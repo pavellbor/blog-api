@@ -10,7 +10,7 @@ import { UserEntity } from './user.entity.js';
 import { UserService } from './user-service.interface.js';
 
 @injectable()
-export class BaseUserService implements UserService {
+export class DefaultUserService implements UserService {
   constructor(
     @inject(Component.Logger)
     private readonly logger: Logger,
@@ -22,16 +22,20 @@ export class BaseUserService implements UserService {
     return this.userModel.find();
   }
 
-  public async create(dto: CreateUserDto): Promise<DocumentType<UserEntity>> {
+  public async create(dto: CreateUserDto['user']): Promise<DocumentType<UserEntity>> {
     const user = new UserEntity({ ...dto, image: DEFAULT_AVATAR_FILE_NAME });
 
     await user.setPassword(dto.password);
 
     const result = await this.userModel.create(user);
 
-    this.logger.info(`A new user has been created: ${user.username}`);
+    this.logger.info(`A new user has been created: ${user.id}`);
 
     return result;
+  }
+
+  public async findById(id: string): Promise<DocumentType<UserEntity>> {
+    return this.userModel.findById(id);
   }
 
   public async findByEmail(email: string): Promise<DocumentType<UserEntity>> {
@@ -42,7 +46,7 @@ export class BaseUserService implements UserService {
     return this.userModel.findOne({ username });
   }
 
-  public async updateById(userId: string, dto: UpdateUserDto): Promise<DocumentType<UserEntity>> {
+  public async updateById(userId: string, dto: UpdateUserDto['user']): Promise<DocumentType<UserEntity>> {
     const result = await this.userModel.findByIdAndUpdate(userId, dto, { new: true });
 
     this.logger.info(`The user has been updated: ${result.id}`);
@@ -54,5 +58,31 @@ export class BaseUserService implements UserService {
     const result = await this.userModel.findById(userId);
 
     return !!result;
+  }
+
+  public async followUser(followingByUserId: string, followUserId: string): Promise<void> {
+    const followingByUser = await this.userModel.findById(followingByUserId);
+
+    await this.userModel.findByIdAndUpdate(followingByUser.id, {
+      $addToSet: {
+        followed: followUserId,
+      },
+    });
+  }
+
+  public async unfollowUser(followingByUserId: string, followUserId: string): Promise<void> {
+    const followingByUser = await this.userModel.findById(followingByUserId);
+
+    await this.userModel.findByIdAndUpdate(followingByUser.id, {
+      $pull: {
+        followed: followUserId,
+      },
+    });
+  }
+
+  public async isFollowingBy(followingByUserId: string, followUserId: string): Promise<boolean> {
+    const followUser = await this.userModel.findOne({ _id: followingByUserId, followed: { $in: [followUserId] } });
+
+    return !!followUser;
   }
 }

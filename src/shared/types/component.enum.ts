@@ -9,6 +9,8 @@ export const Component = {
   ValidationExceptionFilter: Symbol.for('ValidationExceptionFilter'),
 
   UserController: Symbol.for('UserController'),
+  UsersController: Symbol.for('UsersController'),
+  ProfilesController: Symbol.for('ProfilesController'),
   UserModel: Symbol.for('UserModel'),
   UserService: Symbol.for('UserService'),
 

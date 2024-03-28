@@ -1,22 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import * as jwt from 'jsonwebtoken';
+// eslint-disable-next-line import/default
+import jwt from 'jsonwebtoken';
 import { TokenPayload } from 'shared/modules/auth/index.js';
 
 import { HttpError } from '../index.js';
 import { Middleware } from './middleware.interface.js';
 
 function isTokenPayload(payload: unknown): payload is TokenPayload {
-  return (
-    typeof payload === 'object' &&
-    payload !== null &&
-    'email' in payload &&
-    typeof payload.email === 'string' &&
-    'username' in payload &&
-    typeof payload.username === 'string' &&
-    'id' in payload &&
-    typeof payload.id === 'string'
-  );
+  return typeof payload === 'object' && payload !== null && 'id' in payload && typeof payload.id === 'string';
 }
 
 export class ParseTokenMiddleware implements Middleware {
@@ -40,6 +32,6 @@ export class ParseTokenMiddleware implements Middleware {
       }
     } catch {}
 
-    next(new HttpError(StatusCodes.UNAUTHORIZED, 'Invalid token', 'AuthenticateMiddleware'));
+    next(new HttpError(StatusCodes.UNAUTHORIZED, 'Invalid token', 'ParseTokenMiddleware'));
   }
 }

@@ -1,6 +1,6 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 
-export class LoggedUserRdo {
+class User {
   @Expose()
   public token: string;
 
@@ -9,4 +9,16 @@ export class LoggedUserRdo {
 
   @Expose()
   public username: string;
+
+  @Expose()
+  public image: string;
+
+  @Expose()
+  public bio: string;
+}
+
+export class LoggedUserRdo {
+  @Expose()
+  @Type(() => User)
+  public user: User;
 }

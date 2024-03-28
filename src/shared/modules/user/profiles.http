@@ -1,0 +1,22 @@
+# Профили
+
+## Получить профиль пользователя
+
+GET http://localhost:3000/profiles/user1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVmMzVhOWFhNGJlOGIyZDRlZTViMCIsImlhdCI6MTcxMTUyOTQ2NCwiZXhwIjoxNzExNzAyMjY0fQ.wJn15BCEmT7viGD9vqYaFoWdqCTquJDcWypIXQEcVi0
+
+###
+
+## Подписаться на пользователя
+
+POST http://localhost:3000/profiles/user1/follow HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVmMzVhOWFhNGJlOGIyZDRlZTViMCIsImlhdCI6MTcxMTUyOTQ2NCwiZXhwIjoxNzExNzAyMjY0fQ.wJn15BCEmT7viGD9vqYaFoWdqCTquJDcWypIXQEcVi0
+
+###
+
+## Отписаться от пользователя
+
+DELETE http://localhost:3000/profiles/user1/follow HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWVmMzVhOWFhNGJlOGIyZDRlZTViMCIsImlhdCI6MTcxMTUyOTQ2NCwiZXhwIjoxNzExNzAyMjY0fQ.wJn15BCEmT7viGD9vqYaFoWdqCTquJDcWypIXQEcVi0
+
+###

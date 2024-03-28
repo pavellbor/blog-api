@@ -3,5 +3,5 @@ import { UserEntity } from '../user/user.entity.js';
 
 export interface AuthService {
   authenticate(user: UserEntity): string;
-  verify(dto: LoginUserDto): Promise<UserEntity>;
+  verify(dto: LoginUserDto['user']): Promise<UserEntity>;
 }

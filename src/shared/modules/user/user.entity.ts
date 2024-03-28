@@ -1,4 +1,4 @@
-import { defaultClasses, getModelForClass, modelOptions, prop } from '@typegoose/typegoose';
+import { defaultClasses, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose';
 import * as bcrypt from 'bcrypt';
 
 import { User } from '../../types/index.js';
@@ -23,11 +23,21 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   })
   public email: string;
 
-  @prop()
+  @prop({
+    default: null,
+  })
   public image: string;
 
-  @prop()
-  public bio?: string;
+  @prop({
+    default: null,
+  })
+  public bio: string;
+
+  @prop({
+    ref: UserEntity,
+    default: [],
+  })
+  public followed: Ref<UserEntity>[];
 
   @prop({
     required: true,

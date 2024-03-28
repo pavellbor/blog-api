@@ -12,6 +12,7 @@ import {
   ValidateObjectIdMiddleware,
 } from '../../libs/rest/index.js';
 import { Component } from '../../types/component.enum.js';
+import { UserService } from '../user/index.js';
 import { CommentService } from './comment-service.interface.js';
 import { CreateCommentDto } from './dto/create-comment.dto.js';
 import { CommentRdo } from './rdo/comment.rdo.js';
@@ -23,6 +24,8 @@ export class CommentController extends BaseController {
   constructor(
     @inject(Component.Logger) protected readonly logger: Logger,
     @inject(Component.CommentService) private readonly commentService: CommentService,
+    @inject(Component.UserService)
+    private readonly userService: UserService,
   ) {
     super(logger);
 
@@ -31,14 +34,14 @@ export class CommentController extends BaseController {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [new PrivateRouteMiddleware(), new ValidateDtoMiddleware(CreateCommentDto)],
+      middlewares: [new PrivateRouteMiddleware(this.userService), new ValidateDtoMiddleware(CreateCommentDto)],
     });
     this.addRoute({
       path: '/:commentId',
       method: HttpMethod.Delete,
       handler: this.delete,
       middlewares: [
-        new PrivateRouteMiddleware(),
+        new PrivateRouteMiddleware(this.userService),
         new ValidateObjectIdMiddleware('commentId'),
         new CheckDocumentExistsMiddleware(this.commentService, 'commentId'),
       ],

@@ -1,5 +1,6 @@
 import { inject, injectable } from 'inversify';
-import * as jwt from 'jsonwebtoken';
+// eslint-disable-next-line import/default
+import jwt from 'jsonwebtoken';
 import { Config } from 'shared/libs/config/config.interface.js';
 import { RestSchema } from 'shared/libs/config/rest.schema.js';
 
@@ -22,7 +23,7 @@ export class DefaultAuthService implements AuthService {
   ) {}
 
   public authenticate(user: UserEntity): string {
-    const payload: TokenPayload = { id: user.id, email: user.email, username: user.username };
+    const payload: TokenPayload = { id: user.id };
     const token = jwt.sign(payload, this.configService.get('JWT_SECRET'), {
       algorithm: JWT_ALGORITHM,
       expiresIn: JWT_EXPIRED,
@@ -31,7 +32,7 @@ export class DefaultAuthService implements AuthService {
     return token;
   }
 
-  public async verify(dto: LoginUserDto): Promise<UserEntity> {
+  public async verify(dto: LoginUserDto['user']): Promise<UserEntity> {
     const user = await this.userService.findByEmail(dto.email);
 
     if (!user) {

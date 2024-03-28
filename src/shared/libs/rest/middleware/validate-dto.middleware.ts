@@ -11,8 +11,9 @@ export class ValidateDtoMiddleware implements Middleware {
 
   async execute({ body, path, baseUrl }: Request, res: Response, next: NextFunction): Promise<void> {
     const dtoInstance = plainToInstance(this.dto, body);
+    console.log(body);
 
-    const errors = await validate(dtoInstance);
+    const errors = await validate(dtoInstance, { whitelist: true, forbidNonWhitelisted: true });
 
     if (errors.length > 0) {
       throw new ValidationError(`Validation error: ${baseUrl + path}`, reduceValidationErrors(errors));

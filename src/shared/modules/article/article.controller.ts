@@ -14,6 +14,7 @@ import { ValidateDtoMiddleware } from '../../libs/rest/middleware/validate-dto.m
 import { Component } from '../../types/component.enum.js';
 import { CommentController } from '../comment/comment.controller.js';
 import { CommentService } from '../comment/comment-service.interface.js';
+import { UserService } from '../user/user-service.interface.js';
 import { ArticleService } from './article-service.interface.js';
 import { CreateArticleDto } from './dto/create-article.dto.js';
 import { UpdateArticleDto } from './dto/update-article.dto.js';
@@ -30,6 +31,8 @@ export class ArticleController extends BaseController {
     @inject(Component.Logger) protected readonly logger: Logger,
     @inject(Component.ArticleService)
     private readonly articleService: ArticleService,
+    @inject(Component.UserService)
+    private readonly userService: UserService,
     @inject(Component.CommentService) private readonly commentService: CommentService,
     @inject(Component.CommentController) private readonly commentController: CommentController,
   ) {
@@ -60,7 +63,7 @@ export class ArticleController extends BaseController {
       path: '/:articleId',
       handler: this.update,
       middlewares: [
-        new PrivateRouteMiddleware(),
+        new PrivateRouteMiddleware(this.userService),
         new ValidateObjectIdMiddleware('articleId'),
         new ValidateDtoMiddleware(UpdateArticleDto),
         new CheckDocumentExistsMiddleware(this.articleService, 'articleId'),
@@ -71,7 +74,7 @@ export class ArticleController extends BaseController {
       path: '/:articleId',
       handler: this.delete,
       middlewares: [
-        new PrivateRouteMiddleware(),
+        new PrivateRouteMiddleware(this.userService),
         new ValidateObjectIdMiddleware('articleId'),
         new CheckDocumentExistsMiddleware(this.articleService, 'articleId'),
       ],

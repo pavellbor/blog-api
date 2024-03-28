@@ -1,4 +1,7 @@
 export const CreateUserMessage = {
+  user: {
+    invalidFormat: 'The user field must be a valid object',
+  },
   username: {
     invalidFormat: 'Field username must be a string',
     length: 'The length of the username field should be from 2 to 15 characters',

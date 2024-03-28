@@ -23,10 +23,26 @@ export function createErrorObject(errorType: ApplicationError, error: string, de
 }
 
 export function reduceValidationErrors(errors: ValidationError[]): ValidationErrorField[] {
-  return errors.map(({ property, value, constraints }) => ({
+  const createMessages = (constraints: ValidationError['constraints'], children: ValidationError[]) => {
+    const messages = [];
+
+    if (constraints) {
+      messages.push(...Object.values(constraints));
+    }
+
+    if (children) {
+      children.forEach(({ constraints: childrenConstraints }) => {
+        messages.push(...Object.values(childrenConstraints));
+      });
+    }
+
+    return messages;
+  };
+
+  return errors.map(({ property, value, constraints, children }) => ({
     property,
     value,
-    messages: constraints ? Object.values(constraints) : [],
+    messages: createMessages(constraints, children),
   }));
 }
 
