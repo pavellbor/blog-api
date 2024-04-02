@@ -1,8 +1,9 @@
-import { IsArray, IsString, MaxLength, MinLength } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsArray, IsObject, IsOptional, IsString, MaxLength, MinLength, ValidateNested } from 'class-validator';
 
 import { CreateArticleValidationMessage } from './create-article.messages.js';
 
-export class CreateArticleDto {
+export class Article {
   @IsString({ message: CreateArticleValidationMessage.title.invalidFormat })
   @MinLength(10, { message: CreateArticleValidationMessage.title.minLength })
   @MaxLength(100, { message: CreateArticleValidationMessage.title.maxLength })
@@ -20,7 +21,16 @@ export class CreateArticleDto {
 
   @IsArray({ message: CreateArticleValidationMessage.tagList.invalidFormat })
   @IsString({ each: true, message: CreateArticleValidationMessage.tagList.childrenInvalidFormat })
-  public tagList: string[];
+  @IsOptional()
+  public tagList?: string[];
 
-  public userId: string;
+  @IsOptional()
+  public userId?: string;
+}
+
+export class CreateArticleDto {
+  @Type(() => Article)
+  @ValidateNested()
+  @IsObject({ message: CreateArticleValidationMessage.article.invalidFormat })
+  article: Article;
 }

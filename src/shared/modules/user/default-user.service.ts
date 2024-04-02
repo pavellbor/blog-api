@@ -76,4 +76,22 @@ export class DefaultUserService implements UserService {
 
     return currentUser.isFollowing(checkingUserId);
   }
+
+  public async favoriteArticle(currentUserId: string, articleId: string): Promise<void> {
+    const currentUser = await this.userModel.findById(currentUserId);
+
+    await currentUser.favoriteArticle(articleId);
+  }
+
+  public async unfavoriteArticle(currentUserId: string, articleId: string): Promise<void> {
+    const currentUser = await this.userModel.findById(currentUserId);
+
+    await currentUser.unfavoriteArticle(articleId);
+  }
+
+  public async isFavorite(currentUserId: string, articleId: string): Promise<boolean> {
+    const currentUser = await this.userModel.findById(currentUserId);
+
+    return currentUser.isFavorite(articleId);
+  }
 }

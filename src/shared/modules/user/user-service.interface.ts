@@ -15,4 +15,7 @@ export interface UserService extends DocumentExistsService {
   followUser(currentUserId: string, followUserId: string): Promise<void>;
   unfollowUser(currentUserId: string, unfollowUserId: string): Promise<void>;
   isFollowing(currentUserId: string, checkingUserId: string): Promise<boolean>;
+  favoriteArticle(currentUserId: string, articleId: string): Promise<void>;
+  unfavoriteArticle(currentUserId: string, articleId: string): Promise<void>;
+  isFavorite(currentUserId: string, articleId: string): Promise<boolean>;
 }

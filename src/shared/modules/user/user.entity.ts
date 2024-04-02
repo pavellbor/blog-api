@@ -2,6 +2,7 @@ import { defaultClasses, DocumentType, getModelForClass, modelOptions, prop, Ref
 import * as bcrypt from 'bcrypt';
 
 import { User } from '../../types/index.js';
+import { ArticleEntity } from '../article/article.entity.js';
 import { DEFAULT_AVATAR_FILE_NAME, SALT_ROUNDS } from './user.constant.js';
 
 export interface UserEntity extends defaultClasses.Base {}
@@ -47,6 +48,13 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   public followingUsers: Ref<UserEntity, string>[];
 
   @prop({
+    ref: ArticleEntity,
+    type: String,
+    default: [],
+  })
+  public favoritedArticles: Ref<ArticleEntity, string>[];
+
+  @prop({
     required: true,
   })
   private password?: string;
@@ -79,6 +87,20 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
 
   public async isFollowing(this: DocumentType<UserEntity>, userId: string): Promise<boolean> {
     return this.followingUsers.includes(userId);
+  }
+
+  public async favoriteArticle(this: DocumentType<UserEntity>, articleId: string): Promise<void> {
+    this.favoritedArticles.push(articleId);
+    await this.save();
+  }
+
+  public async unfavoriteArticle(this: DocumentType<UserEntity>, articleId: string): Promise<void> {
+    this.favoritedArticles = this.favoritedArticles.filter((favoriteArticle) => favoriteArticle !== articleId);
+    await this.save();
+  }
+
+  public async isFavorite(this: DocumentType<UserEntity>, articleId: string): Promise<boolean> {
+    return this.favoritedArticles.includes(articleId);
   }
 }
 

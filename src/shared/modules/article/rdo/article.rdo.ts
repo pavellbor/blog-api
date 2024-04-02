@@ -1,12 +1,10 @@
 import { Expose, Type } from 'class-transformer';
 
-import { UserRdo } from '../../user/rdo/user.rdo.js';
+import { Profile } from '../../user/rdo/user-profile.rdo.js';
 
 export class ArticleRdo {
-  @Expose({
-    name: '_id',
-  })
-  id: string;
+  @Expose()
+  slug: string;
 
   @Expose()
   title: string;
@@ -26,9 +24,15 @@ export class ArticleRdo {
   @Expose()
   updatedAt: Date;
 
+  @Expose()
+  favorited: boolean;
+
+  @Expose()
+  favoritesCount: number;
+
   @Expose({
     name: 'userId',
   })
-  @Type(() => UserRdo)
-  author: UserRdo;
+  @Type(() => Profile)
+  author: Profile;
 }

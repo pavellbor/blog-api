@@ -9,7 +9,6 @@ import { DatabaseClient } from '../shared/libs/database-client/index.js';
 import { Logger } from '../shared/libs/logger/index.js';
 import { Controller, ExceptionFilter } from '../shared/libs/rest/index.js';
 import { ParseTokenMiddleware } from '../shared/libs/rest/middleware/parse-token.middleware.js';
-import { ProfilesController } from '../shared/modules/user/index.js';
 import { Component } from '../shared/types/index.js';
 import { STATIC_FILES_ROUTE, STATIC_UPLOAD_ROUTE } from './rest.constant.js';
 
@@ -25,9 +24,10 @@ export class RestApplication {
     @inject(Component.UserController)
     private readonly userController: Controller,
     @inject(Component.ProfilesController)
-    private readonly profilesController: ProfilesController,
+    private readonly profilesController: Controller,
     @inject(Component.ArticleController)
     private readonly articleController: Controller,
+    @inject(Component.TagController) private readonly tagController: Controller,
     @inject(Component.DatabaseClient)
     private readonly databaseClient: DatabaseClient,
     @inject(Component.AppExceptionFilter)
@@ -70,6 +70,7 @@ export class RestApplication {
     this.server.use('/user', this.userController.router);
     this.server.use('/profiles', this.profilesController.router);
     this.server.use('/articles', this.articleController.router);
+    this.server.use('/tags', this.tagController.router);
   }
 
   private async initServer() {

@@ -22,6 +22,9 @@ export const Component = {
   CommentModel: Symbol.for('CommentModel'),
   CommentService: Symbol.for('CommentService'),
 
+  TagController: Symbol.for('TagController'),
+  TagService: Symbol.for('TagService'),
+
   AuthService: Symbol.for('AuthService'),
   AuthExceptionFilter: Symbol.for('AuthExceptionFilter'),
 

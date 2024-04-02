@@ -1,6 +1,6 @@
 import { Request } from 'express';
+import { ArticleSlugParam } from 'shared/modules/article/types/article-slug-param.type.js';
 
-import { ArticleIdParam } from '../../article/types/article-id-param.type.js';
 import { CreateCommentDto } from '../dto/create-comment.dto.js';
 
-export type CreateCommentRequest = Request<ArticleIdParam, unknown, Omit<CreateCommentDto, 'articleId'>>;
+export type CreateCommentRequest = Request<ArticleSlugParam, unknown, CreateCommentDto>;

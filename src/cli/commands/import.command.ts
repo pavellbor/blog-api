@@ -6,10 +6,10 @@ import { ConsoleLogger } from '../../shared/libs/logger/console.logger.js';
 import { Logger } from '../../shared/libs/logger/logger.interface.js';
 import { ArticleModel } from '../../shared/modules/article/article.entity.js';
 import { ArticleService } from '../../shared/modules/article/article-service.interface.js';
-import { BaseArticleService } from '../../shared/modules/article/base-article.service.js';
-import { BaseCommentService } from '../../shared/modules/comment/base-comment.service.js';
+import { DefaultArticleService } from '../../shared/modules/article/default-article.service.js';
 import { CommentModel } from '../../shared/modules/comment/comment.entity.js';
 import { CommentService } from '../../shared/modules/comment/comment-service.interface.js';
+import { DefaultCommentService } from '../../shared/modules/comment/default-comment.service.js';
 import { DefaultUserService } from '../../shared/modules/user/default-user.service.js';
 import { UserModel } from '../../shared/modules/user/user.entity.js';
 import { UserService } from '../../shared/modules/user/user-service.interface.js';
@@ -35,9 +35,9 @@ export class ImportCommand implements CliCommand {
     this.logger = new ConsoleLogger();
     this.databaseClient = new MongoDatabaseClient(this.logger);
 
-    this.articleService = new BaseArticleService(this.logger, ArticleModel);
+    this.articleService = new DefaultArticleService(this.logger, ArticleModel);
     this.userService = new DefaultUserService(this.logger, UserModel);
-    this.commentService = new BaseCommentService(this.logger, CommentModel);
+    this.commentService = new DefaultCommentService(this.logger, CommentModel);
   }
 
   private async getParsedData(filePath: string): Promise<MockData> {

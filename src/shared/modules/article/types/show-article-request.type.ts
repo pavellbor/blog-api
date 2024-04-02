@@ -1,5 +1,5 @@
 import { Request } from 'express';
 
-import { ArticleIdParam } from './article-id-param.type.js';
+import { ArticleSlugParam } from './article-slug-param.type.js';
 
-export type ShowArticleRequest = Request<ArticleIdParam>;
+export type ShowArticleRequest = Request<ArticleSlugParam>;

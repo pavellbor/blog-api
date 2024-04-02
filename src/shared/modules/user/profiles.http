@@ -2,15 +2,15 @@
 
 ## Получить профиль пользователя
 
-GET http://localhost:3000/profiles/user3 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDU2ZjBlMjYwNzczM2Y1Nzg5ZTEzZiIsImlhdCI6MTcxMTYzMjE5MCwiZXhwIjoxNzExODA0OTkwfQ.7W7x-wdmydDIZf2eKT3L2ISRQ5kLKAAW7XZ0FhOmL3I
+GET http://localhost:3000/profiles/user2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDg0YjJiNjMzYjI5YzBkMWEzZWQ5ZSIsImlhdCI6MTcxMTgxOTU2NywiZXhwIjoxNzExOTkyMzY3fQ.yRoClwtdg8zcgdTfYtBf-MQEGPn-sUj2SOmrs-v4E_k
 
 ###
 
 ## Подписаться на пользователя
 
-POST http://localhost:3000/profiles/user3/follow HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDU2ZjBlMjYwNzczM2Y1Nzg5ZTEzZiIsImlhdCI6MTcxMTYzMjE5MCwiZXhwIjoxNzExODA0OTkwfQ.7W7x-wdmydDIZf2eKT3L2ISRQ5kLKAAW7XZ0FhOmL3I
+POST http://localhost:3000/profiles/user1/follow HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDg2Njc5ODY5OTJjNmU0NWQzYWI1OCIsImlhdCI6MTcxMTgyNjU1NCwiZXhwIjoxNzExOTk5MzU0fQ.SAmhSMcX-djUHaaBsr-gzDamuL1CcATvHVCpYSnrPRs
 
 ###
 

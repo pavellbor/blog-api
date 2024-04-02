@@ -1,6 +1,11 @@
 import { Request } from 'express';
-import { RequestParams } from 'shared/libs/rest/index.js';
 
-import { FindRequestQuery } from './find-request-query.type.js';
+import { ListQueryParams } from '../../../libs/rest/index.js';
 
-export type IndexArticlesRequest = Request<RequestParams, unknown, unknown, FindRequestQuery>;
+export type RequestQuery = {
+  tag?: string;
+  author?: string;
+  favorited?: string;
+} & ListQueryParams;
+
+export type IndexArticlesRequest = Request<unknown, unknown, unknown, RequestQuery>;

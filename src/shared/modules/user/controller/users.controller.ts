@@ -12,6 +12,7 @@ import { CreateUserDto } from '../dto/create-user.dto.js';
 import { LoginUserDto } from '../dto/login-user.dto.js';
 import { CheckCredentialsAvailableMiddleware } from '../middleware/check-credentials-available.middleware.js';
 import { LoggedUserRdo } from '../rdo/logged-user.rdo.js';
+import { RegisteredUserRdo } from '../rdo/registered-user.rdo.js';
 import { UserRdo } from '../rdo/user.rdo.js';
 import { LoginUserRequest } from '../types/login-user-request.type.js';
 import { RegisterUserRequest } from '../types/register-user-request.type.js';
@@ -62,6 +63,11 @@ export class UsersController extends BaseController {
 
   public async register(req: RegisterUserRequest, res: Response, _next: NextFunction): Promise<void> {
     const user = await this.userService.create(req.body.user);
-    this.created(res, fillDTO(UserRdo, user));
+    const token = this.authService.authenticate(user);
+
+    const { username, email, image, bio } = user;
+    const responseData = fillDTO(RegisteredUserRdo, { user: { username, email, image, bio, token } });
+
+    this.created(res, responseData);
   }
 }

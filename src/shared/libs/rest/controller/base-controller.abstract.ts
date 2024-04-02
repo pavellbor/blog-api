@@ -41,7 +41,7 @@ export class BaseController implements Controller {
     this.logger.info(`Route registered: ${route.method.toUpperCase()} ${route.path}`);
   }
 
-  public async send<T>(res: Response, statusCode: number, data: T): Promise<void> {
+  public async send<T>(res: Response, statusCode: number, data?: T): Promise<void> {
     const modifiedData = await this.pathTransformer.execute(data as Record<string, unknown>);
     res.status(statusCode).json(modifiedData);
   }
@@ -54,8 +54,8 @@ export class BaseController implements Controller {
     this.send(res, StatusCodes.CREATED, data);
   }
 
-  public noContent<T>(res: Response, data: T): void {
-    this.send(res, StatusCodes.NO_CONTENT, data);
+  public noContent(res: Response): void {
+    this.send(res, StatusCodes.NO_CONTENT);
   }
 
   public conflict<T>(res: Response, data: T): void {

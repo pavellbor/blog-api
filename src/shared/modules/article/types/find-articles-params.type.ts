@@ -1,5 +1,4 @@
-export type FindRequestQuery = {
-  search?: string;
+export type FindArticlesParams = {
   tag?: string;
   author?: string;
   favorited?: string;

@@ -4,14 +4,19 @@ import { DocumentExistsService } from '../../types/document-exists-service.inter
 import { ArticleEntity } from './article.entity.js';
 import { CreateArticleDto } from './dto/create-article.dto.js';
 import { UpdateArticleDto } from './dto/update-article.dto.js';
-import { FindRequestQuery } from './types/find-request-query.type.js';
+import { FindArticlesParams } from './types/find-articles-params.type.js';
+import { FindFeedArticlesParams } from './types/find-feed-articles-params.type.js';
 
 export interface ArticleService extends DocumentExistsService {
-  find(params: FindRequestQuery): Promise<DocumentType<ArticleEntity>[]>;
+  find(params: FindArticlesParams): Promise<{ data: DocumentType<ArticleEntity>[]; count: number }>;
+  findFeed(
+    followingUsersIds: string[],
+    params: FindFeedArticlesParams,
+  ): Promise<{ data: DocumentType<ArticleEntity>[]; count: number }>;
   findById(articleId: string): Promise<DocumentType<ArticleEntity> | null>;
+  findBySlug(slug: string): Promise<DocumentType<ArticleEntity> | null>;
   findByTitle(title: string): Promise<DocumentType<ArticleEntity> | null>;
-  create(dto: CreateArticleDto): Promise<DocumentType<ArticleEntity>>;
-  updateById(articleId: string, dto: UpdateArticleDto): Promise<DocumentType<ArticleEntity>>;
-  deleteById(articleId: string): Promise<DocumentType<ArticleEntity> | null>;
-  getTotalCount(): Promise<number>;
+  create(dto: CreateArticleDto['article']): Promise<DocumentType<ArticleEntity>>;
+  updateBySlug(articleSlug: string, dto: UpdateArticleDto['article']): Promise<DocumentType<ArticleEntity>>;
+  deleteBySlug(articleSlug: string): Promise<DocumentType<ArticleEntity> | null>;
 }

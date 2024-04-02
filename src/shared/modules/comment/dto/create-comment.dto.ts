@@ -1,13 +1,12 @@
-import { IsString, Length } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsObject, ValidateNested } from 'class-validator';
 
+import { CommentDto } from './comment.dto.js';
 import { CreateCommentMessage } from './create-comment.messages.js';
 
 export class CreateCommentDto {
-  @IsString({ message: CreateCommentMessage.body.invalidFormat })
-  @Length(5, 1024, { message: CreateCommentMessage.body.length })
-  body: string;
-
-  articleId: string;
-
-  userId: string;
+  @Type(() => CommentDto)
+  @ValidateNested()
+  @IsObject({ message: CreateCommentMessage.comment.invalidFormat })
+  comment: Pick<CommentDto, 'body'>;
 }

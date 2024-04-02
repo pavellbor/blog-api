@@ -12,10 +12,12 @@ import {
   ValidateObjectIdMiddleware,
 } from '../../libs/rest/index.js';
 import { Component } from '../../types/component.enum.js';
+import { ArticleService } from '../article/article-service.interface.js';
 import { UserService } from '../user/index.js';
 import { CommentService } from './comment-service.interface.js';
 import { CreateCommentDto } from './dto/create-comment.dto.js';
-import { CommentRdo } from './rdo/comment.rdo.js';
+import { MultipleCommentsRdo } from './rdo/multiple-comments.rdo.js';
+import { SingleCommentRdo } from './rdo/single-comment.rdo.js';
 import { CreateCommentRequest } from './types/create-comment-request.type.js';
 import { DeleteCommentRequest } from './types/delete-comment-request.type copy.js';
 
@@ -23,6 +25,7 @@ import { DeleteCommentRequest } from './types/delete-comment-request.type copy.j
 export class CommentController extends BaseController {
   constructor(
     @inject(Component.Logger) protected readonly logger: Logger,
+    @inject(Component.ArticleService) private readonly articleService: ArticleService,
     @inject(Component.CommentService) private readonly commentService: CommentService,
     @inject(Component.UserService)
     private readonly userService: UserService,
@@ -49,21 +52,32 @@ export class CommentController extends BaseController {
   }
 
   async index(req: Request, res: Response, _next: NextFunction) {
-    const comments = await this.commentService.findByArticleId(req.params.articleId);
+    const article = await this.articleService.findBySlug(req.params.articleSlug);
+    const comments = await this.commentService.findByArticleId(article.id);
 
-    this.ok(res, fillDTO(CommentRdo, comments));
+    for (const comment of comments) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      comment.userId.following = req.tokenPayload?.id
+        ? await this.userService.isFollowing(req.tokenPayload.id, comment.userId._id.toString())
+        : false;
+    }
+
+    this.ok(res, fillDTO(MultipleCommentsRdo, { comments }));
   }
 
   async create(req: CreateCommentRequest, res: Response, _next: NextFunction) {
-    const createCommentPayload = { body: req.body.body, userId: req.tokenPayload.id, articleId: req.params.articleId };
+    const article = await this.articleService.findBySlug(req.params.articleSlug);
+
+    const createCommentPayload = { ...req.body.comment, userId: req.tokenPayload.id, articleId: article.id };
     const comment = await this.commentService.create(createCommentPayload);
 
-    this.created(res, fillDTO(CommentRdo, comment));
+    this.created(res, fillDTO(SingleCommentRdo, { comment }));
   }
 
   async delete(req: DeleteCommentRequest, res: Response, _next: NextFunction) {
-    const deletedComment = await this.commentService.deleteById(req.params.commentId);
+    await this.commentService.deleteById(req.params.commentId);
 
-    this.noContent(res, fillDTO(CommentRdo, deletedComment));
+    this.noContent(res);
   }
 }

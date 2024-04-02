@@ -8,7 +8,7 @@ import { CommentService } from './comment-service.interface.js';
 import { CreateCommentDto } from './dto/create-comment.dto.js';
 
 @injectable()
-export class BaseCommentService implements CommentService {
+export class DefaultCommentService implements CommentService {
   constructor(
     @inject(Component.Logger) private readonly logger: Logger,
     @inject(Component.CommentModel) private readonly commentModel: ReturnModelType<typeof CommentEntity>,
@@ -18,7 +18,7 @@ export class BaseCommentService implements CommentService {
     return this.commentModel.find({ articleId }).populate('userId');
   }
 
-  public async create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>> {
+  public async create(dto: CreateCommentDto['comment']): Promise<DocumentType<CommentEntity>> {
     const result = await (await this.commentModel.create(dto)).populate('userId');
 
     this.logger.info(`A new comment was added: ${result.body}`);

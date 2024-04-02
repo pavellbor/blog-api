@@ -14,5 +14,6 @@ export * from './middleware/validate-dto.middleware.js';
 export * from './middleware/validate-object-id.middleware.js';
 export * from './types/http-method.enum.js';
 export * from './types/inner-controller.type.js';
+export * from './types/list-query-params.type.js';
 export * from './types/route.type.js';
 export * from './types/validation-error-field.type.js';

@@ -1,4 +1,7 @@
 export const CreateArticleValidationMessage = {
+  article: {
+    invalidFormat: 'Field article must be an object',
+  },
   title: {
     invalidFormat: 'Field title must be a string',
     minLength: 'Minimum title length must be 10',

@@ -11,7 +11,7 @@ export class Profile {
   image: string;
 
   @Expose()
-  following: false;
+  following: boolean;
 }
 
 export class UserProfileRdo {
